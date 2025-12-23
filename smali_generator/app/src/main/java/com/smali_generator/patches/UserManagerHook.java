@@ -31,7 +31,7 @@ public class UserManagerHook implements Hook {
         try {
             ret = Objects.requireNonNull(VideoAdsPolicyClass.getEnumConstants())[0];
         } catch (Exception e) {
-            Log.e("PATCH", "ActivityHook: Error creating VideoAdsPolicy instance:" + e.getMessage());
+            Log.e("PATCH", "UserManagerHook: Error creating VideoAdsPolicy instance:" + e.getMessage());
         }
         if (ret == null) {
             ret = get_users_ads_policy_backup(instance);
@@ -43,11 +43,11 @@ public class UserManagerHook implements Hook {
         return false;
     }
     public void load() {
-        Log.i("PATCH", "ActivityHook: Patch loaded");
+        Log.i("PATCH", "UserManagerHook: Patch loaded");
         try {
             VideoAdsPolicyClass = Class.forName("com.mako.kscore.ksplayer.helpers.VideoAdsPolicy");
         } catch (Exception e) {
-            Log.e("PATCH", "ActivityHook: Error finding VideoAdsPolicy class:" + e.getMessage());
+            Log.e("PATCH", "UserManagerHook: Error finding VideoAdsPolicy class:" + e.getMessage());
         }
         try {
             Class<?> UserManager = Class.forName("com.mako.kscore.user.UserManager");
@@ -67,11 +67,11 @@ public class UserManagerHook implements Hook {
             HookMain.hook(to_patch, patch);
 
         } catch (Exception e) {
-            Log.e("PATCH", "ActivityHook: Error:" + e.getMessage());
+            Log.e("PATCH", "UserManagerHook: Error:" + e.getMessage());
         }
     }
 
     public void unload() {
-        Log.i("PATCH", "ActivityHook: Patch unloaded");
+        Log.i("PATCH", "UserManagerHook: Patch unloaded");
     }
 }
