@@ -1,5 +1,8 @@
 import argparse
+from pathlib import Path
+
 from stitch import Stitch
+from stitch.common import ExternalModule
 
 
 def get_args():
@@ -19,7 +22,8 @@ def main():
             apk_path=args.apk_path,
             output_apk=args.output,
             temp_path=args.temp_path,
-            external_module='./smali_generator'
+            external_modules=[ExternalModule(Path('./smali_generator'),
+                                             'invoke-static {}, Lcom/smali_generator/TheAmazingPatch;->on_load()V')]
     ) as stitch:
         stitch.patch()
 
