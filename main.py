@@ -15,7 +15,8 @@ def get_args():
                         default='./artifactory.json')
     parser.add_argument('--no-sign', dest='should_sign', help='Whether to sign the output APK', action='store_false',
                         required=False, default=True)
-    return parser.parse_args()
+    args, _ = parser.parse_known_args()
+    return args
 
 
 def main():
