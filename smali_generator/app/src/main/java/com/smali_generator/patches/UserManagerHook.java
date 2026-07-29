@@ -7,7 +7,7 @@ import com.smali_generator.Hook;
 import java.lang.reflect.Method;
 import java.util.Objects;
 
-import lab.galaxy.yahfa.HookMain;
+import com.arthooks.ArtHooks;
 
 
 public class UserManagerHook implements Hook {
@@ -54,17 +54,17 @@ public class UserManagerHook implements Hook {
             Method to_patch = UserManager.getMethod("isUserSubscribed");
             Method patch = UserManagerHook.class.getDeclaredMethod("is_paying_user", Object.class);
             Method patch_backup = UserManagerHook.class.getDeclaredMethod("is_paying_user_backup", Object.class);
-            HookMain.backupAndHook(to_patch, patch, patch_backup);
+            ArtHooks.hook_function(to_patch, patch, patch_backup);
 
             to_patch = UserManager.getMethod("getUserAdsPolicy");
             patch = UserManagerHook.class.getDeclaredMethod("get_users_ads_policy", Object.class);
             patch_backup = UserManagerHook.class.getDeclaredMethod("get_users_ads_policy_backup", Object.class);
-            HookMain.backupAndHook(to_patch, patch, patch_backup);
+            ArtHooks.hook_function(to_patch, patch, patch_backup);
 
             Class<?> InterstitialManager = Class.forName("com.keshet.mako.VOD.utils.managers.InterstitialManager");
             to_patch = InterstitialManager.getDeclaredMethod("getAdsAllowed");
             patch = UserManagerHook.class.getDeclaredMethod("get_ads_allowed", Object.class);
-            HookMain.hook(to_patch, patch);
+            ArtHooks.hook_function(to_patch, patch);
 
         } catch (Exception e) {
             Log.e("PATCH", "UserManagerHook: Error:" + e.getMessage());
