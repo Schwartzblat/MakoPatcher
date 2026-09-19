@@ -36,7 +36,7 @@ def main():
     extra_artifacts = {artifact.split(':')[0]: artifact.split(':')[1] for artifact in args.extra_artifacts}
     external_modules = [
         ExternalModule(Path(__file__).parent / './smali_generator',
-                       'invoke-static {}, Lcom/smali_generator/TheAmazingPatch;->on_load()V')
+                       'com.smali_generator.InitProviderMako')
     ]
     if args.paywall is not None:
         extra_artifacts.setdefault('PAYWALL_PROVIDER_CLASS', PAYWALL_PROVIDER.rsplit('.', 1)[1])
